@@ -14,7 +14,7 @@ async function boot(k){const m=await getMeta(),out={};
  window.__bqLock=()=>{localStorage.removeItem(KEY);location.reload()};
  const st=document.createElement("style");st.textContent=out["style.css"];document.head.appendChild(st);
  $("lock").remove();document.body.insertAdjacentHTML("afterbegin",out["body.html"]);
- for(const f of["content.js","books.js","nlt.js","scenes.js","app.js"]){const s=document.createElement("script");s.textContent=out[f];document.body.appendChild(s)}}
+ for(const f of m.files.map(x=>x[0]).filter(n=>n.endsWith(".js"))){const s=document.createElement("script");s.textContent=out[f];document.body.appendChild(s)}}
 async function unlock(){const pw=$("pw").value;if(!pw)return;$("lErr").textContent="Unlocking…";$("lGo").disabled=true;
  try{const m=await getMeta();const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);
   const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:b64(m.salt),iterations:m.iter,hash:"SHA-256"},base,256);const k=await imp(bits);
