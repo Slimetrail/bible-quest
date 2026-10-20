@@ -1,5 +1,5 @@
 // Network-first service worker; caches the loader and encrypted blobs for offline play.
-const CACHE="bq-enc-mvgkv88x",SHELL=["./","index.html","loader.js","audio/words.js","img/bg/list.js","manifest.webmanifest","enc/meta.json","enc/b0.bin","enc/b1.bin","enc/b2.bin","enc/b3.bin","enc/b4.bin","enc/b5.bin","enc/b6.bin","enc/b7.bin","enc/b8.bin","enc/b9.bin","enc/b10.bin","enc/b11.bin","enc/b12.bin","enc/b13.bin","enc/b14.bin","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png"];
+const CACHE="bq-enc-mvglhcxo",SHELL=["./","index.html","loader.js","audio/words.js","img/bg/list.js","manifest.webmanifest","enc/meta.json","enc/b0.bin","enc/b1.bin","enc/b2.bin","enc/b3.bin","enc/b4.bin","enc/b5.bin","enc/b6.bin","enc/b7.bin","enc/b8.bin","enc/b9.bin","enc/b10.bin","enc/b11.bin","enc/b12.bin","enc/b13.bin","enc/b14.bin","enc/b15.bin","enc/b16.bin","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png"];
 // 🔊 word-pronunciation clips: precached in the background (not blocking install) and refreshed with every new cache version.
 try{importScripts("audio/words.js","img/bg/list.js")}catch(_){}
 const AUD=[...new Set(Object.values(self.BQ_AU||{}))].map(f=>"audio/"+f).concat(self.BQ_IMG||[]);let auBusy=null;
