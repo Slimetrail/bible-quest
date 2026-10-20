@@ -16,6 +16,7 @@ const imp=raw=>crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);
 async function check(k){const m=await getMeta();try{return new TextDecoder().decode(await dec(k,b64(m.check)))==="bible-quest-ok"}catch(e){return false}}
 async function boot(k){const m=await getMeta(),out={};
  for(const[n,id]of m.files){const u=new Uint8Array(await (await fetch("enc/"+id+"?v="+m.v)).arrayBuffer());out[n]=new TextDecoder().decode(await dec(k,u))}
+ window.__bqLazy=async n=>{const e=(m.lazy||{})[n];if(!e)return null;const u=new Uint8Array(await (await fetch("enc/"+e+"?v="+m.v)).arrayBuffer());return new TextDecoder().decode(await dec(k,u))};
  window.__bqLock=async()=>{localStorage.removeItem(KEY);await keyDel();location.reload()};
  const st=document.createElement("style");st.textContent=out["style.css"];document.head.appendChild(st);
  $("lock").remove();document.body.insertAdjacentHTML("afterbegin",out["body.html"]);
